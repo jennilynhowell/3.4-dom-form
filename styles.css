@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 60vw;
+  height: 50vh;
+  margin: 0 auto;
+  margin-top: 10vh;
+  text-align: center;
+  border: 1px solid #000;
+}
+
+form input {
+  margin: 0 auto;
+  display: block;
+  width: 85%;
+}
