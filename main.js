@@ -94,34 +94,48 @@
     console.log(labelDiv);
     formNode.appendChild(labelDiv);
 
-    var formField = document.createElement('input');
-    formField.setAttribute('type', formData[i].type);
-    formField.setAttribute('id', formData[i].id);
-    formField.placeholder = formData[i].label;
-    console.log(formField);
-    formNode.appendChild(formField);
+    if (formData[i].type === 'text'|| formData[i].type === 'email' || formData[i].type === 'tel') {
+      var formField = document.createElement('input');
+      formField.setAttribute('type', formData[i].type);
+      formField.setAttribute('id', formData[i].id);
+      formField.placeholder = formData[i].label;
+      console.log(formField);
+      formNode.appendChild(formField);
+    }
 
-//=====================HOW TO GET THIS TO PULL OPTIONS ARRAY??
-    if (formData[i].type === 'select'){
-      var selectBox = document.getElementById('user-language');
+    if (formData[i].type === 'select') {
+      var selectField = document.createElement('select');
+      selectField.setAttribute('type', formData[i].type);
+      selectField.setAttribute('id', formData[i].id);
+      console.log(selectField);
+      formNode.appendChild(selectField);
 
-      for (var p = 0; p < (formData[i].options).length; p++) {
+      for (var p = 0; p < (formData[4].options).length; p++) {
         var optionsList = document.createElement('option');
-        optionsList.textContent = 'HELLO';
-        // optionsList.setAttribute('label', (formData[i].options).label);
-        optionsList.value = (formData[i].options).value;
-        selectBox.appendChild(optionsList);
+        optionsList.textContent = (formData[4].options[p].label);
+        optionsList.value = (formData[4].options[p].value);
+        selectField.appendChild(optionsList);
       }
     }
 
+    if (formData[i].type === 'textarea') {
+      var textField = document.createElement('textarea');
+      textField.setAttribute('type', formData[i].type);
+      textField.setAttribute('id', formData[i].id);
+      textField.placeholder = formData[i].label;
+      console.log(textField);
+      formNode.appendChild(textField);
+    }
+
+
   };
 
-  // var selectBox = document.getElementById('user-language');
-  //   for (var p = 0; p < (selectBox.options).length; p++) {
-  //     var optionsList = document.createElement('option');
-  //     optionsList.value = (selectBox.options).value;
-  //     selectBox.appendChild(optionsList);
-  //   }
+  var submitButton = document.createElement('button');
+  submitButton.setAttribute('id', 'submitButton');
+  submitButton.textContent = 'Submit Form';
+  console.log(submitButton);
+  formNode.appendChild(submitButton);
+
 
 
 
