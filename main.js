@@ -1,5 +1,5 @@
-// (function(){
-//   'use strict';
+(function(){
+  'use strict';
 
   var formData = [
     {
@@ -81,34 +81,45 @@
     }
   ];
 
+  var bodyNode = document.querySelector('body');
   var formNode = document.getElementById('signupForm');
 
-  var formHeader = document.createElement('h1');
+  var formHeader = document.createElement('div');
+  formHeader.setAttribute('class', 'formHeader');
   formNode.appendChild(formHeader);
-  formHeader.textContent = "Sign Up For My Web App";
+  var formTopText = document.createElement('h1');
+  formTopText.textContent = "Sign Up For My Web App";
+  formHeader.appendChild(formTopText);
 
   for (var i = 0; i < formData.length; i++) {
 
     var labelDiv = document.createElement('label')
-    labelDiv.setAttribute('for', formData[i].type)
-    console.log(labelDiv);
+    labelDiv.setAttribute('for', formData[i].id);
     formNode.appendChild(labelDiv);
 
+    var fieldDiv = document.createElement('div');
+    fieldDiv.setAttribute('class', 'fieldDiv');
+    formNode.appendChild(fieldDiv);
+
+    var spanTag = document.createElement('span');
+    spanTag.setAttribute('class', 'fa ' + formData[i].icon);
+    fieldDiv.appendChild(spanTag);
+
     if (formData[i].type === 'text'|| formData[i].type === 'email' || formData[i].type === 'tel') {
+
       var formField = document.createElement('input');
       formField.setAttribute('type', formData[i].type);
       formField.setAttribute('id', formData[i].id);
+      formField.setAttribute('name', formData[i].id);
       formField.placeholder = formData[i].label;
-      console.log(formField);
-      formNode.appendChild(formField);
-    }
+      fieldDiv.appendChild(formField);
 
-    if (formData[i].type === 'select') {
+    } else if (formData[i].type === 'select') {
+
       var selectField = document.createElement('select');
       selectField.setAttribute('type', formData[i].type);
       selectField.setAttribute('id', formData[i].id);
-      console.log(selectField);
-      formNode.appendChild(selectField);
+      fieldDiv.appendChild(selectField);
 
       for (var p = 0; p < (formData[4].options).length; p++) {
         var optionsList = document.createElement('option');
@@ -116,19 +127,22 @@
         optionsList.value = (formData[4].options[p].value);
         selectField.appendChild(optionsList);
       }
-    }
+    } else if (formData[i].type === 'textarea') {
 
-    if (formData[i].type === 'textarea') {
       var textField = document.createElement('textarea');
       textField.setAttribute('type', formData[i].type);
       textField.setAttribute('id', formData[i].id);
       textField.placeholder = formData[i].label;
-      console.log(textField);
-      formNode.appendChild(textField);
-    }
+      fieldDiv.appendChild(textField);
+    };
 
 
   };
+
+  var footerBar = document.createElement('div');
+  footerBar.setAttribute('id', 'footerBar');
+  console.log(footerBar);
+  formNode.appendChild(footerBar);
 
   var submitButton = document.createElement('button');
   submitButton.setAttribute('id', 'submitButton');
@@ -140,4 +154,6 @@
 
 
 
-// }());
+
+
+}());
